@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="https://cdn.iconscout.com/icon/premium/png-256-thumb/expense-tracker-app-4203120-3509061.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  </head>
+  <body style="background: #c6dee9">
+    <!--  ---------------Header-------------  -->
+    <div id="loader"></div>
+    <div id="myDiv" style="display: none">
+      <header>
+        <div class="header">
+          <h1 class="main-heading">Expense Tracker</h1>
+        </div>
+      </header>
+
+      <!-- -------------main -----------------  -->
+
+      <main>
+        <div class="container-fluid" style="background: #c6dee9">
+          <div class="row">
+            <!-- -------------Left column----------------- -->
+
+            <div class="col-lg-6 left">
+              <div class="container1-l">
+                <div class="navb">
+                  <div id="welcome"></div>
+                  <button id="fa-user" style="background-color: transparent">
+                    <i class="fa-solid fa-user" style="color: black"></i>
+                  </button>
+                </div>
+                <div><h2 style="color: white">Overview</h2></div>
+                <div id="container-chart" class="chart"></div>
+              </div>
+
+              <div class="container2-l">
+                <div class="content">
+                  <strong><span id="havetotal">What you Have?</span></strong>
+                  <h2 id="balance">00</h2>
+                </div>
+              </div>
+
+              <div class="container3-l">
+                <div id="table1">
+                  <table>
+                    <tr>
+                      <th>Cash</th>
+                      <th>Bank</th>
+                      <th>Saving</th>
+                    </tr>
+                    <tr>
+                      <td id="table1-cash">00</td>
+                      <td id="table1-bank">00</td>
+                      <td id="table1-saving">00</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="add-bank">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    data-bs-whatever="@getbootstrap"
+                  >
+                    Click to add Bank
+                  </button>
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Add Bank
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label"
+                                >Enter Account Name</label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="bank-name"
+                              />
+                            </div>
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label"
+                                >Enter Ammount</label
+                              >
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="ammount"
+                                min="0"
+                                onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                              />
+                            </div>
+                          </form>
+                        </div>
+                        <div id="alert" class="alert"></div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-dismiss="modal"
+                            id="submitbtn"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <select name="bank-select" id="bank-select1"></select>
+                </div>
+
+                <div class="container4-l">
+                  <div class="scroll">
+                    <table id="table2">
+                      <tr>
+                        <th>Cash</th>
+                        <td id="table2-cash">00</td>
+                      </tr>
+                      <tr>
+                        <th>Saving</th>
+                        <td id="table2-saving">00</td>
+                      </tr>
+                      <tr style="display: none">
+                        <td id="table2-bank">00</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- -------------Right column----------------- -->
+
+            <div class="col-lg-6 right">
+              <div class="container1-r">
+                <div class="cont-head">Add Transactions</div>
+                <div class="add-trans row">
+                  <div class="col-lg-6 sec1">
+                    <input
+                      type="number"
+                      id="ammount-input"
+                      placeholder="Enter Ammount"
+                      min="0"
+                      onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                    />
+                    <label for="bank-select"></label>
+                    <select name="bank-select" id="bank-select"></select>
+                  </div>
+                  <div class="col-lg-6 sec2">
+                    <input
+                      type="radio"
+                      id="expenseradio"
+                      name="division"
+                      value="Expense"
+                    />
+                    <h1 id="expensevalue" style="display: none">00</h1>
+                    <button disabled id="expensebtn" value="expensebtn">
+                      <i class="fa-solid fa-wallet"><br /></i>Expense
+                    </button>
+                    <input
+                      type="radio"
+                      id="incomeradio"
+                      name="division"
+                      value="incomebtn"
+                    />
+                    <h1 id="incomevalue" style="display: none">00</h1>
+                    <button disabled id="incomebtn" value="Incomebtn">
+                      <i class="fa-solid fa-money-bill"></i>Income
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="container2-r">
+                <div class="cont-head">
+                  <strong
+                    ><h4 style="color: #19a7ce">Choose the Category</h4></strong
+                  >
+                </div>
+                <div id="expen-icon">
+                  <button disabled>
+                    <i class="fa-sharp fa-solid fa-house"></i>
+                  </button>
+                  <button disabled>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                  </button>
+                  <button disabled><i class="fa-solid fa-gift"></i></button>
+                  <button disabled><i class="fa-solid fa-utensils"></i></button>
+                  <button disabled>
+                    <i class="fa-solid fa-notes-medical"></i>
+                  </button>
+                </div>
+                <div id="expen-selection">
+                  <input
+                    type="radio"
+                    id="house"
+                    name="expandivision"
+                    value="housebtn"
+                  />
+                  <input
+                    type="radio"
+                    id="shopping"
+                    name="expandivision"
+                    value="shoppingbtn"
+                  />
+                  <input
+                    type="radio"
+                    id="gift"
+                    name="expandivision"
+                    value="giftbtn"
+                  />
+                  <input
+                    type="radio"
+                    id="dinner"
+                    name="expandivision"
+                    value="dinnerbtn"
+                  />
+                  <input
+                    type="radio"
+                    id="medical"
+                    name="expandivision"
+                    value="medicalbtn"
+                  />
+                </div>
+                <div id="expen-title">
+                  <strong>
+                    <span>Home</span>
+                    <span>Shopping</span>
+                    <span>Gift</span>
+                    <span>Dinner</span>
+                    <span>Medical</span>
+                  </strong>
+                </div>
+                <div class="btn" id="expen-add">
+                  <button id="expen-addbtn">Add</button>
+                </div>
+              </div>
+
+              <div class="container3-r">
+                <div class="table-3">
+                  <div class="cont-head">
+                    <strong>
+                      <h4>Transaction History</h4>
+                    </strong>
+                  </div>
+                  <div class="scroll1">
+                    <div id="table3">
+                      <table></table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- -------------Footer-----------------  -->
+
+      <footer>
+        <div class="footer">
+          <p>Copyright &copy; 2023 By Disruptors</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<!-- -------------Footer-----------------  -->
+
+<!-- -------------- Script ---------------- -->
+
+<script type="module">
+  // Firebase + Firestore Modules
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+  import {
+    getAuth,
+    signOut,
+  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+  import {
+    getFirestore,
+    deleteDoc,
+    addDoc,
+    collection,
+    doc,
+    getDoc,
+    query,
+    where,
+    getDocs,
+    setDoc,
+    updateDoc,
+  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+  // Api Key for Firebase + Firestore
+
+  import { firebaseConfig } from "./key.js";
+
+  // Variables Declared which will get the data from firstore and the dom load
+
+  let banksarr = ["Cash", "Savings"];
+  let transactionhistory = [];
+  let banknamearray = [];
+  let calculationarray = [];
+  let othercalculation = { Expense: "", Income: "" };
+  const useremail = localStorage.getItem("useremail");
+  let expensestorage;
+  let incomestorage;
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // Function called in order to remove the loader and show main page
+
+  var myVar;
+  const myFunction = async function () {
+    myVar = setTimeout(showPage, 2000);
+  };
+
+  function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "contents";
+  }
+
+  addEventListener("DOMContentLoaded", async () => {
+    const docRef = doc(db, "users/", useremail);
+    const docSnap = await getDoc(docRef);
+
+    myFunction();
+
+    // This fucntion will work when the data is fetched from firestore and will initalize all the exsisting variables which are defined
+
+    if (docSnap.exists()) {
+      const userdata = docSnap.data();
+      console.log(userdata);
+      othercalculation = userdata.othercalculations;
+      banksarr = userdata.banksarr;
+      transactionhistory = userdata.transactionhistory;
+      banknamearray = userdata.banknamearray;
+      calculationarray = userdata.calculationarray;
+      expensestorage = userdata.othercalculations.Expense;
+      incomestorage = userdata.othercalculations.Income;
+
+      // Welcome Heading
+
+      document.getElementById(
+        "welcome"
+      ).innerHTML = `<h4><strong>Welcome ${userdata.name}</strong-></h4>`;
+
+      // Function to fetch the data and store in userbanks data
+
+      let i = 0;
+      while (i < userdata.banksarr.length) {
+        let mytable3 = document.getElementById("table2");
+        const bankvalue = banksarr.length - 1;
+        const sel = document.getElementById("bank-select");
+        const opt = document.createElement("option");
+        const sel1 = document.getElementById("bank-select1");
+        const opt1 = document.createElement("option");
+
+        opt.text = banksarr[i];
+        sel.add(opt, sel.options[bankvalue]);
+        opt1.text = banksarr[i];
+        sel1.add(opt1, sel1.options[bankvalue]);
+
+        i++;
+      }
+
+      // Function created if user wants to logout
+
+      document.getElementById("fa-user").addEventListener("click", function () {
+        if (confirm("Are you sure you want to logout?") == true) {
+          const auth = getAuth();
+          signOut(auth)
+            .then(async () => {
+              localStorage.clear();
+              window.location.replace("Login.html");
+            })
+            .catch((error) => {
+              // An error happened.
+            });
+        }
+      });
+
+      // Function to fetch the data and create Table for users no of banks
+
+      if (userdata.banknamearray.length > 2) {
+        let myTable = document.getElementById("table1");
+        let mytable3 = document.getElementById("table2");
+
+        let b = 2;
+        while (b < userdata.banknamearray.length) {
+          let row2 = document.createElement("tr");
+          let th = document.createElement("th");
+          let td = document.createElement("td");
+          th.innerHTML = `<th>${userdata.banknamearray[b].BankName}</th>`;
+          td.innerHTML = `<th>${userdata.banknamearray[b].currentbank}</th>`;
+          mytable3.appendChild(row2);
+          row2.appendChild(th);
+          row2.appendChild(td);
+          let table2bank = (mytable3.querySelector("#table2-bank").innerHTML =
+            userdata.banknamearray[b].currentbank);
+
+          b++;
+        }
+      } else {
+      }
+
+      // Function to fetch the data and create Total Calculation Table
+
+      if (userdata.calculationarray.Balance === undefined) {
+        let myTable = document.getElementById("table1");
+      } else {
+        let myTable = document.getElementById("table1");
+        let balance = document.getElementById("balance");
+        balance.innerHTML = userdata.calculationarray.Balance;
+        let table1bank1 = (myTable.querySelector("#table1-bank").innerHTML =
+          userdata.calculationarray.totalbank);
+        let table1cash1 = (myTable.querySelector("#table1-cash").innerHTML =
+          userdata.calculationarray.totalcash);
+        let table1saving1 = (myTable.querySelector("#table1-saving").innerHTML =
+          userdata.calculationarray.totalsaving);
+      }
+    }
+
+    // Function to fetch the data and create Table for Transaction history of a user
+
+    let a = 0;
+    while (a < transactionhistory.length) {
+      let mytable3 = document.getElementById("table2");
+
+      let table2cash = (mytable3.querySelector("#table2-cash").innerHTML =
+        calculationarray.totalcash);
+      let table2saving = (mytable3.querySelector("#table2-saving").innerHTML =
+        calculationarray.totalsaving);
+      const table = document.getElementById("table3");
+      let row2 = document.createElement("tr");
+      let th1 = document.createElement("th");
+      let td1 = document.createElement("td");
+      let td2 = document.createElement("td");
+      let td3 = document.createElement("td");
+      let td4 = document.createElement("td");
+
+      if (transactionhistory[a].type === "Income") {
+        th1.innerHTML = `<th>${transactionhistory[a].type}</th>`;
+        td1.innerHTML = `<th>${transactionhistory[a].BankName}</th>`;
+        td2.innerHTML = `<th>${transactionhistory[a].Date}</th>`;
+        td3.innerHTML = `<th>-$${transactionhistory[a].Ammount}</th>`;
+        td3.style.color = "green";
+        table.appendChild(row2);
+        row2.appendChild(th1);
+        row2.appendChild(td1);
+        row2.appendChild(td2);
+        row2.appendChild(td3);
+        row2.appendChild(td4);
+      } else {
+        th1.innerHTML = `<th>${transactionhistory[a].type}</th>`;
+        td1.innerHTML = `<th>${transactionhistory[a].BankName}</th>`;
+        td2.innerHTML = `<th>${transactionhistory[a].Date}</th>`;
+        td3.innerHTML = `<th>-$${transactionhistory[a].Ammount}</th>`;
+
+        td3.style.color = "red";
+
+        table.appendChild(row2);
+        row2.appendChild(th1);
+        row2.appendChild(td1);
+        row2.appendChild(td2);
+        row2.appendChild(td3);
+        row2.appendChild(td4);
+      }
+
+      a++;
+    }
+
+    // Function to fetch the data and create Income vs Expense Chart
+
+    var data = [
+      { x: "Income", value: othercalculation.Income },
+      { x: "Expense", value: othercalculation.Expense },
+    ];
+    const element = document.getElementById("container-chart");
+    let var3 = `<div id="container-chart"></div>`;
+    element.innerHTML = var3;
+    var chart = anychart.pie(data);
+    chart.innerRadius("75%");
+
+    var palette = anychart.palettes.distinctColors();
+    palette.items([{ color: "#00ff00" }, { color: "#ec1313" }]);
+    chart.palette(palette);
+
+    var labels = chart.labels();
+    labels.position("outside");
+    labels.fontColor("#343232");
+    chart.overlapMode(true);
+    chart.insideLabelsOffset("-75%");
+    chart.legend(false);
+    chart.container("container-chart");
+    chart.background().fill("#19a7ce");
+
+    chart.draw();
+  });
+
+  // Function which will work when the user wants to add the bank
+
+  submitbtn.addEventListener("click", async () => {
+    let bankname = document.getElementById("bank-name").value;
+    let ammount = parseInt(document.getElementById("ammount").value);
+    let myTable = document.getElementById("table1");
+    let table1cash = parseInt(myTable.querySelector("#table1-cash").innerText);
+    let table1saving = parseInt(
+      myTable.querySelector("#table1-saving").innerHTML
+    );
+    let table1bank = parseInt(myTable.querySelector("#table1-bank").innerHTML);
+    let mytable3 = document.getElementById("table2");
+
+    // If any of the feilds are empty
+
+    let count = 0;
+    if (bankname === "" || ammount === "") {
+      window.alert("Please fill all the feilds");
+    } else {
+      banksarr.forEach(function (item, index) {
+        if (item === bankname) {
+          count = count + 1;
+        }
+      });
+
+      // Condition to check if the bank is already added
+
+      if (count > 0) {
+        window.alert("The bank is already added!");
+      } else {
+        //Condition which will push the bank in selection option and in database
+
+        banksarr.push(bankname);
+        const bankvalue = banksarr.length - 1;
+        const sel = document.getElementById("bank-select");
+        const opt = document.createElement("option");
+        const sel1 = document.getElementById("bank-select1");
+        const opt1 = document.createElement("option");
+        opt.text = bankname;
+        sel.add(opt, sel.options[bankvalue]);
+        opt1.text = bankname;
+        sel1.add(opt1, sel1.options[bankvalue]);
+
+        // Conditions which will appned a row when the bank is added
+
+        const table = document.getElementById("table2");
+        let row2 = document.createElement("tr");
+        let th = document.createElement("th");
+        let td = document.createElement("td");
+        th.innerHTML = `<th>${bankname}</th>`;
+        td.innerHTML = `<th>${ammount}</th>`;
+
+        table.appendChild(row2);
+        row2.appendChild(th);
+        row2.appendChild(td);
+
+        let totalbank = ammount + table1bank;
+        let newbalance = table1cash + totalbank;
+        Number(balance);
+        balance.innerHTML = `<h2>${newbalance}</h2>`;
+        let table1bank1 = (myTable.querySelector("#table1-bank").innerHTML =
+          totalbank);
+
+        banknamearray.push({
+          BankName: bankname,
+          currentbank: ammount,
+        });
+
+        calculationarray = {
+          totalbank: table1bank1,
+          totalsaving: table1saving,
+          totalcash: table1cash,
+          Balance: newbalance,
+        };
+
+        const docRef = doc(db, "users/", useremail);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          console.log(docSnap.data());
+
+          const data = {
+            banksarr: banksarr,
+            banknamearray: banknamearray,
+            calculationarray: calculationarray,
+          };
+
+          updateDoc(docRef, data).then(() => {
+            console.log("Document has been added successfully");
+          });
+        }
+      }
+    }
+  });
+
+  // Condition which will work when user wants to add transactions
+
+  document
+    .getElementById("expen-addbtn")
+    .addEventListener("click", async function addexpen() {
+      const ammountin = document.getElementById("ammount-input");
+      let ammountdb = parseInt(ammountin.value);
+      let select = document.getElementById("bank-select");
+      const expenseradio = document.getElementById("expenseradio");
+      let expensehtml = parseInt(
+        document.getElementById("expensevalue").innerText
+      );
+      let incomehtml = parseInt(
+        document.getElementById("incomevalue").innerText
+      );
+
+      const divisonradio = document.querySelector(
+        'input[name="division"]:checked'
+      );
+      const expenradio = document.querySelector(
+        'input[name="expandivision"]:checked'
+      );
+      var value = select.options[select.selectedIndex].value;
+      let selected = select.options[select.selectedIndex].text;
+      let selected1 = select.selectedIndex;
+
+      let myTable = document.getElementById("table1");
+      let table1cash = Number(myTable.querySelector("#table1-cash").innerText);
+      let table1saving = parseInt(
+        myTable.querySelector("#table1-saving").innerText
+      );
+      let table1bank = parseInt(
+        myTable.querySelector("#table1-bank").innerText
+      );
+
+      let mytable3 = document.getElementById("table2");
+
+      let totalbalance = document.getElementById("balance");
+      let date = new Date();
+      let currentDate = date.toString();
+
+      // Conditions if any of the option is not selected
+
+      if (
+        ammountin.value.length == 0 ||
+        divisonradio == null ||
+        expenradio == null ||
+        value == undefined
+      ) {
+        window.alert("Please select all the feilds");
+      } else {
+        // Condition which will work when the user adds any expense history
+
+        if (expenseradio.checked === true) {
+          function expensevalidation() {
+            if (expensestorage == 0) {
+              let totalexpense = ammountdb + expensehtml;
+              let expensehtml3 = (document.getElementById(
+                "expensevalue"
+              ).innerHTML = `<h2>${totalexpense}</h2>`);
+              othercalculation.Expense = totalexpense;
+            } else {
+              let totalexpense = ammountdb + expensestorage;
+              let expensehtml3 = (document.getElementById(
+                "expensevalue"
+              ).innerHTML = `<h2>${totalexpense}</h2>`);
+              othercalculation.Expense = totalexpense;
+            }
+          }
+
+          // Condition which will work when the user adds any expense history with Cash
+
+          if (selected === "Cash") {
+            let totalcash = table1cash - ammountdb;
+            let newbalance =
+              parseInt(table1bank) + totalcash + Number(table1saving);
+            let table2cashupdate = table1cash - ammountdb;
+            if (table2cashupdate < 0) {
+              window.alert("The input ammount is more than the cash!");
+            } else {
+              totalbalance.innerHTML = `<h2>${newbalance}</h2>`;
+              let table1cash1 = parseInt(
+                (myTable.querySelector("#table1-cash").innerHTML = totalcash)
+              );
+              let table2cash1 = (mytable3.querySelector(
+                "#table2-cash"
+              ).innerHTML = totalcash);
+
+              banknamearray[0].currentcash = totalcash;
+
+              calculationarray = {
+                Balance: newbalance,
+                totalbank: table1bank,
+                totalsaving: table1saving,
+                totalcash: table1cash1,
+              };
+
+              const docRef = doc(db, "users/", useremail);
+              const docSnap = await getDoc(docRef);
+
+              if (docSnap.exists()) {
+                console.log(docSnap.data());
+
+                const data = {
+                  banknamearray: banknamearray,
+                  othercalculations: othercalculation,
+                  calculationarray: calculationarray,
+                  transactionhistory: transactionhistory,
+                };
+
+                updateDoc(docRef, data).then(() => {
+                  console.log("Document has been added successfully");
+                });
+              }
+
+              expensevalidation();
+              transactioncall();
+            }
+          }
+
+          // Condition which will work when the user adds any expense history with Savings
+          else if (selected === "Savings") {
+            let totalsaving = table1saving - ammountdb;
+            let newbalance =
+              Number(table1bank) + Number(totalsaving) + Number(table1cash);
+            let table2savingupdate = table1saving - ammountdb;
+            if (table2savingupdate < 0) {
+              window.alert("The input ammount is more than the Savings!");
+            } else {
+              totalbalance.innerHTML = `<h2>${newbalance}</h2>`;
+              let table1saving1 = parseInt(
+                (myTable.querySelector("#table1-saving").innerHTML =
+                  totalsaving)
+              );
+              let table2saving = (mytable3.querySelector(
+                "#table2-saving"
+              ).innerHTML = table2savingupdate);
+
+              banknamearray[1].currentsaving = totalsaving;
+              calculationarray = {
+                Balance: newbalance,
+                totalbank: table1bank,
+                totalsaving: totalsaving,
+                totalcash: table1cash,
+              };
+
+              const docRef = doc(db, "users/", useremail);
+              const docSnap = await getDoc(docRef);
+
+              if (docSnap.exists()) {
+                console.log(docSnap.data());
+
+                const data = {
+                  banknamearray: banknamearray,
+                  othercalculations: othercalculation,
+                  calculationarray: calculationarray,
+                  transactionhistory: transactionhistory,
+                };
+
+                updateDoc(docRef, data).then(() => {
+                  console.log("Document has been added successfully");
+                });
+              }
+
+              expensevalidation();
+              transactioncall();
+            }
+          } else {
+            let table4 = document.getElementById("table2");
+            let var1 = selected1;
+            let var2 = banknamearray[var1].currentbank;
+            Number(var1);
+            let totalbank = table1bank - ammountdb;
+            let newbalance = totalbank + table1cash + Number(table1saving);
+            let table2bankupdate = var2 - ammountdb;
+
+            if (table2bankupdate < 0) {
+              window.alert("The input ammount is more than the selected bank!");
+            }
+
+            // Condition which will work when the user adds any expense history with any other bank
+            else {
+              totalbalance.innerHTML = `<h2>${newbalance}</h2>`;
+              let table1bank1 = (myTable.querySelector(
+                "#table1-bank"
+              ).innerHTML = totalbank);
+              banknamearray[var1].currentbank = table2bankupdate;
+
+              calculationarray = {
+                Balance: newbalance,
+                totalbank: totalbank,
+                totalsaving: table1saving,
+                totalcash: table1cash,
+              };
+              var x = document.getElementById("table2").rows.length - 1;
+
+              let c = 0;
+              for (let i = 2; i < x; i++) {
+                table4.deleteRow(x - c);
+                c = c + 1;
+              }
+              let b = 2;
+              while (b < banknamearray.length) {
+                let row1 = document.createElement("tr");
+                let th = document.createElement("th");
+                let td = document.createElement("td");
+                th.innerHTML = `<th>${banknamearray[b].BankName}</th>`;
+                td.innerHTML = `<th>${banknamearray[b].currentbank}</th>`;
+                table4.appendChild(row1);
+                row1.appendChild(th);
+                row1.appendChild(td);
+
+                b++;
+              }
+              const docRef = doc(db, "users/", useremail);
+              const docSnap = await getDoc(docRef);
+
+              if (docSnap.exists()) {
+                console.log(docSnap.data());
+
+                const data = {
+                  banknamearray: banknamearray,
+                  othercalculations: othercalculation,
+                  calculationarray: calculationarray,
+                  transactionhistory: transactionhistory,
+                };
+
+                updateDoc(docRef, data).then(() => {
+                  console.log("Document has been added successfully");
+                });
+              }
+              expensevalidation();
+              transactioncall();
+            }
+          }
+
+          // Function which will be called from Expense area in order to create a transaciton history table of expense
+
+          function transactioncall() {
+            const table = document.getElementById("table3");
+            let row2 = document.createElement("tr");
+            let th1 = document.createElement("th");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            let td4 = document.createElement("td");
+
+            if (house.checked === true) {
+              th1.innerHTML = `<th>House</th>`;
+              td1.innerHTML = `<th>${value}</th>`;
+              td2.innerHTML = `<th>${currentDate}</th>`;
+              td3.innerHTML = `<th>-$${ammountdb}</th>`;
+
+              td3.style.color = "red";
+              table.appendChild(row2);
+              row2.appendChild(th1);
+              row2.appendChild(td1);
+              row2.appendChild(td2);
+              row2.appendChild(td3);
+              row2.appendChild(td4);
+
+              transactionhistory.push({
+                BankName: value,
+                Date: currentDate,
+                Ammount: ammountdb,
+                type: "Home",
+              });
+            } else if (gift.checked === true) {
+              th1.innerHTML = `<th>Gift</th>`;
+              td1.innerHTML = `<th>${value}</th>`;
+              td2.innerHTML = `<th>${currentDate}</th>`;
+              td3.innerHTML = `<th>-$${ammountdb}</th>`;
+              td3.style.color = "red";
+              table.appendChild(row2);
+              row2.appendChild(th1);
+              row2.appendChild(td1);
+              row2.appendChild(td2);
+              row2.appendChild(td3);
+
+              row2.appendChild(td4);
+
+              transactionhistory.push({
+                BankName: value,
+                Date: currentDate,
+                Ammount: ammountdb,
+                type: "Gift",
+              });
+            } else if (dinner.checked === true) {
+              th1.innerHTML = `<th>Dinner</th>`;
+              td1.innerHTML = `<th>${value}</th>`;
+              td2.innerHTML = `<th>${currentDate}</th>`;
+              td3.innerHTML = `<th>-$${ammountdb}</th>`;
+              td3.style.color = "red";
+              table.appendChild(row2);
+              row2.appendChild(th1);
+              row2.appendChild(td1);
+              row2.appendChild(td2);
+              row2.appendChild(td3);
+
+              row2.appendChild(td4);
+
+              transactionhistory.push({
+                BankName: value,
+                Date: currentDate,
+                Ammount: ammountdb,
+                type: "Dinner",
+              });
+            } else if (medical.checked === true) {
+              th1.innerHTML = `<th>Medical</th>`;
+              td1.innerHTML = `<th>${value}</th>`;
+              td2.innerHTML = `<th>${currentDate}</th>`;
+              td3.innerHTML = `<th>-${ammountdb}$</th>`;
+              td3.style.color = "red";
+              table.appendChild(row2);
+              row2.appendChild(th1);
+              row2.appendChild(td1);
+              row2.appendChild(td2);
+              row2.appendChild(td3);
+
+              row2.appendChild(td4);
+
+              transactionhistory.push({
+                BankName: value,
+                Date: currentDate,
+                Ammount: ammountdb,
+                type: "Medical",
+              });
+            } else {
+              th1.innerHTML = `<th>Shopping</th>`;
+              td1.innerHTML = `<th>${value}</th>`;
+              td2.innerHTML = `<th>${currentDate}</th>`;
+              td3.innerHTML = `<th>-${ammountdb}$</th>`;
+              td3.style.color = "red";
+              table.appendChild(row2);
+              row2.appendChild(th1);
+              row2.appendChild(td1);
+              row2.appendChild(td2);
+              row2.appendChild(td3);
+
+              row2.appendChild(td4);
+
+              transactionhistory.push({
+                BankName: value,
+                Date: currentDate,
+                Ammount: ammountdb,
+                type: "Shopping",
+              });
+            }
+          }
+        }
+
+        // Condition which will work when the user adds any expense history
+        else {
+          function incomevalidation() {
+            if (incomestorage == 0) {
+              let totalincome = ammountdb + incomehtml;
+              let incomehtml3 = (document.getElementById(
+                "incomevalue"
+              ).innerHTML = `<h2>${totalincome}</h2>`);
+              othercalculation.Income = totalincome;
+            } else {
+              let totalincome = ammountdb + incomestorage;
+              let incomehtml3 = (document.getElementById(
+                "incomevalue"
+              ).innerHTML = `<h2>${totalincome}</h2>`);
+              othercalculation.Income = totalincome;
+            }
+          }
+
+          // Condition which will work when the user adds any income history with Cash
+
+          if (selected === "Cash") {
+            let totalcash = table1cash + ammountdb;
+            let newbalance =
+              parseInt(table1bank) + totalcash + Number(table1saving);
+            let table2cashupdate = table1cash + ammountdb;
+            totalbalance.innerHTML = `<h2>${newbalance}</h2>`;
+            let table1cash1 = parseInt(
+              (myTable.querySelector("#table1-cash").innerHTML = totalcash)
+            );
+            let table2cash1 = (mytable3.querySelector(
+              "#table2-cash"
+            ).innerHTML = totalcash);
+
+            banknamearray[0].currentcash = totalcash;
+
+            calculationarray = {
+              Balance: newbalance,
+              totalbank: table1bank,
+              totalsaving: table1saving,
+              totalcash: table1cash1,
+            };
+
+            incomevalidation();
+            transactioncall();
+          }
+
+          // Condition which will work when the user adds any income history with  Savings
+          else if (selected === "Savings") {
+            let totalsaving = table1saving + ammountdb;
+            let newbalance =
+              Number(table1bank) + Number(totalsaving) + Number(table1cash);
+            let table2savingupdate = table1saving + ammountdb;
+            totalbalance.innerHTML = `<h2>${newbalance}</h2>`;
+            let table1saving1 = parseInt(
+              (myTable.querySelector("#table1-saving").innerHTML = totalsaving)
+            );
+            let table2saving = (mytable3.querySelector(
+              "#table2-saving"
+            ).innerHTML = table2savingupdate);
+
+            banknamearray[1].currentsaving = totalsaving;
+            calculationarray = {
+              Balance: newbalance,
+              totalbank: table1bank,
+              totalsaving: totalsaving,
+              totalcash: table1cash,
+            };
+
+            incomevalidation();
+            transactioncall();
+          }
+
+          // Condition which will work when the user adds any income history with any other bank
+          else {
+            let mytable3 = document.getElementById("table2");
+            let var1 = selected1;
+            let var2 = banknamearray[var1].currentbank;
+            Number(var1);
+            let totalbank = table1bank + ammountdb;
+            let newbalance = totalbank + table1cash + Number(table1saving);
+            let table2bankupdate = var2 + ammountdb;
+            totalbalance.innerHTML = `<h2>${newbalance}</h2>`;
+            let table1bank1 = (myTable.querySelector("#table1-bank").innerHTML =
+              totalbank);
+
+            banknamearray[var1].currentbank = table2bankupdate;
+            calculationarray = {
+              Balance: newbalance,
+              totalbank: totalbank,
+              totalsaving: table1saving,
+              totalcash: table1cash,
+            };
+
+            let table4 = document.getElementById("table2");
+
+            var x = document.getElementById("table2").rows.length - 1;
+
+            let c = 0;
+            for (let i = 2; i < x; i++) {
+              table4.deleteRow(x - c);
+              c = c + 1;
+            }
+            let b = 2;
+            while (b < banknamearray.length) {
+              let row1 = document.createElement("tr");
+              let th = document.createElement("th");
+              let td = document.createElement("td");
+              th.innerHTML = `<th>${banknamearray[b].BankName}</th>`;
+              td.innerHTML = `<th>${banknamearray[b].currentbank}</th>`;
+              table4.appendChild(row1);
+              row1.appendChild(th);
+              row1.appendChild(td);
+
+              b++;
+            }
+            incomevalidation();
+            transactioncall();
+          }
+
+          // Function which will be called from Income area in order to create a transaciton history table of income
+
+          function transactioncall() {
+            const table = document.getElementById("table3");
+            let row2 = document.createElement("tr");
+            let th1 = document.createElement("th");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            let td4 = document.createElement("td");
+
+            th1.innerHTML = `<th>Income</th>`;
+            td1.innerHTML = `<th>${value}</th>`;
+            td2.innerHTML = `<th>${currentDate}</th>`;
+            td3.innerHTML = `<th>$${ammountin.value}</th>`;
+            td3.style.color = "green";
+            table.appendChild(row2);
+            row2.appendChild(th1);
+            row2.appendChild(td1);
+            row2.appendChild(td2);
+            row2.appendChild(td3);
+
+            row2.appendChild(td4);
+
+            transactionhistory.push({
+              BankName: value,
+              Date: currentDate,
+              Ammount: ammountdb,
+              type: "Income",
+            });
+          }
+        }
+        const docRef = doc(db, "users/", useremail);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          console.log(docSnap.data());
+
+          const data = {
+            banknamearray: banknamearray,
+            othercalculations: othercalculation,
+            calculationarray: calculationarray,
+            transactionhistory: transactionhistory,
+          };
+
+          updateDoc(docRef, data).then(() => {
+            console.log("Document has been added successfully");
+          });
+        }
+      }
+
+      // This will work when any of the transaction is made and the Income and Expense values are passed into this chart
+
+      var data = [
+        { x: "Income", value: othercalculation.Income },
+        { x: "Expense", value: othercalculation.Expense },
+      ];
+      const element = document.getElementById("container-chart");
+      let var3 = `<div id="container-chart"></div>`;
+      element.innerHTML = var3;
+      var chart = anychart.pie(data);
+
+      var palette = anychart.palettes.distinctColors();
+      palette.items([{ color: "#00ff00" }, { color: "#ec1313" }]);
+      chart.palette(palette);
+
+      chart.innerRadius("75%");
+      var labels = chart.labels();
+      labels.position("outside");
+      labels.fontColor("#343232");
+      chart.overlapMode(true);
+      chart.insideLabelsOffset("-75%");
+      chart.legend(false);
+      chart.container("container-chart");
+      chart.background().fill("#19a7ce");
+
+      chart.draw();
+    });
+</script>
+
+<!-- -------------Script-----------------  -->

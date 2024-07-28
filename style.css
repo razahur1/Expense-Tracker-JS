@@ -1,0 +1,516 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+
+/* ------------- body ----------------- */
+
+/* html,
+body {
+    height: 100%;
+    background: #c6dee9;
+    align-items: center;
+    justify-content: center;
+    font-family: "Lato", sans-serif;
+} */
+
+
+/* ------------------- Login / Signup ------------------ */
+
+html,
+body {
+    height: 100%;
+    font-family: "Lato", Helvetica, "sans-serifs";
+    background: #cbd8e3d4;
+
+}
+
+.login, .signup {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 25px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 70%;
+}
+
+.sec1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.login-connect,
+.signup-connect {
+    background: linear-gradient(125deg, #554460, #5ef7e8);
+    color: white;
+    height: 100%;
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
+}
+
+.login-connect, .login-classic,
+.signup-connect, .signup-classic {
+    padding: 30px 30px;
+}
+
+#login-title,
+#signup-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 10rem 0px;
+}
+
+#form-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serifs;
+}
+
+.form fieldset {
+    padding: 0;
+    margin: 20px 0;
+}
+
+.form fieldset input {
+    width: 100%;
+    height: 48px;
+    color: #333333;
+    padding: 15px 40px 15px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+#login, #sign {
+    align-items: center;
+    display: block;
+    font-size: medium;
+    background: #6f6581;
+    color: white;
+    text-decoration: none;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+#login:focus, #sign:focus {
+    color: white;
+    background: #6f6581;
+}
+
+#login:hover, #sign:hover {
+    color: white;
+    border-color: transparent !important;
+    background: #6729db;
+}
+
+#login:active, #sign:active {
+    color: white !important;
+    background: #6729db !important;
+}
+
+
+
+@media screen and (max-width: 767px) {
+
+    div.login,
+    div.signup {
+        padding-bottom: 20px;
+        width: 80%;
+        top: 55%;
+    }
+
+    .login-classic,
+    .signup-classic {
+        padding: 30px 20px;
+    }
+
+    .login-connect #login-title {
+        padding: 6rem 0px;
+    }
+
+    .signup-connect #signup-title {
+        padding: 5rem 0px;
+    }
+
+    #form-title {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    div.login {
+        width: 90%;
+        left: 50%;
+    }
+}
+
+
+
+/* -------------loading animation----------------- */
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    border-top: 16px solid blue;
+    border-bottom: 16px solid blue;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ---------------Header------------- */
+
+.header {
+    background: #19a7ce;
+    margin-bottom: 20px;
+}
+
+.main-heading {
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+/* -------------Left column----------------- */
+
+.row .left {
+    margin-left: 50px;
+    background: #19a7ce;
+    width: 500px;
+    height: min-content;
+}
+
+.row .left .navb {
+    padding: 20px 0px 10px 0px;
+}
+
+.left .container1-l .navb #welcome {
+    color: white;
+    display: inline-block;
+}
+
+.left .container1-l .navb #fa-user {
+    float: right;
+    border: 0px none;
+    border-radius: 50%;
+    color: #8596ab;
+    font-size: 20px;
+}
+
+.left .container1-l .chart {
+    height: 250px;
+}
+
+.left .container2-l .content span {
+    font-size: 25px;
+    color: #f6f1f1;
+}
+
+.left .container2-l .content h2 {
+    font-size: 30px;
+    color: #f6f1f1;
+}
+
+.left .container3-l #table1 {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+}
+
+.left .container3-l #table1 th,
+.left .container3-l #table1 td {
+    padding: 12px 15px;
+    width: 50%;
+    background: #dceeed
+}
+
+.left .container3-l #table1 th {
+    color: #352d64;
+    font-weight: lighter;
+}
+
+.left .container3-l #table1 td {
+    color: #19a7ce;
+    font-weight: bold;
+}
+
+.left .add-bank button {
+    background-color: #146c94;
+    border: none;
+}
+
+.left .add-bank button:hover {
+    background-color: #9eefe9;
+    color: #343232;
+}
+
+.left .add-bank select {
+    margin-left: 2%;
+    color: white;
+    background-color: #146c94;
+}
+
+.left .add-bank select:hover {
+    background-color: #9eefe9;
+    color: #343232;
+}
+
+.left .container4-l {
+    margin: 25px 0px;
+}
+
+.left .container4-l .scroll {
+    height: 170px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.left .container4-l #table2 {
+    border-collapse: collapse;
+    font-size: 1em;
+    font-family: sans-serif;
+}
+
+.left .container4-l #table2 tr {
+    word-spacing: 50px;
+}
+
+.left .container4-l #table2 th,
+.left .container4-l #table2 td {
+    padding: 12px 15px;
+    width: 100%;
+    background: #dceeed;
+
+}
+
+.left .container4-l #table2 td {
+    color: #19a7ce;
+}
+
+
+/* -------------Right column----------------- */
+
+.row .right {
+    margin-left: 100px;
+}
+
+
+
+.right .container1-r {
+    word-spacing: 4px;
+}
+
+.right .cont-head {
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 20px 0px 10px 0px;
+}
+
+
+.right .container1-r button {
+    background-color: #68c3da;
+    color: black
+}
+
+.right .container1-r .sec1 select,
+.right .container1-r .sec1 input,
+.right .container1-r .sec2 {
+    margin-top: 10px;
+}
+
+.right .container1-r button {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.right #expen-icon {
+    word-spacing: 32px;
+    padding: 6px;
+}
+
+.right #expen-icon button {
+    border-radius: 20%;
+    border-width: 1px;
+    background-color: #b8c5d1d4;
+    padding: 7px;
+    color: black;
+    font-size: 20px;
+}
+
+
+.right #expen-selection {
+    word-spacing: 55px;
+    margin-left: 20px;
+}
+
+.right #expen-title {
+    word-spacing: 22px;
+    margin-top: 12px;
+}
+
+.right .container2-r #expen-add {
+    margin: 20px 0px;
+}
+
+.right .container2-r #expen-add button {
+    padding: 0.6rem 5rem;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: 700;
+    color: white;
+    border-color: transparent;
+    background: #19a7ce;
+}
+
+.right .container2-r #expen-add button:hover {
+    /* background-color: #8b45fd;
+  color: white; */
+    background-color: #86aca9;
+    color: #343232;
+}
+
+.right .container3-r {
+    margin-bottom: 15px;
+}
+
+.right .container3-r .scroll1 {
+    height: 230px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    width: 80%;
+}
+
+.right .container3-r #table3 {
+    border-collapse: collapse;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 350px;
+    word-spacing: 50px;
+    background: #19a7ce;
+}
+
+.right .container3-r #table3 tr {
+    word-spacing: 50px;
+    width: 100%;
+    border-bottom: 2px solid #dddddd;
+}
+
+.right .container3-r #table3 th,
+.right .container3-r #table3 td {
+    padding: 12px 15px;
+    width: 30%;
+    background: #b8c5d1d4;
+    border-bottom: 2px solid #dddddd;
+}
+
+/* -------------Footer----------------- */
+
+.footer {
+    background-color: #577a87;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1199px) {
+    .row .left {
+        margin-left: 10px !important;
+    }
+
+    .row .right {
+        margin-left: 10px !important;
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 1029px) {
+    .row .left {
+        width: 100%;
+        margin-left: 0px !important;
+    }
+
+
+
+    .left .container4-l .scroll {
+        height: 150px;
+    }
+
+    .row .right {
+        width: 100%;
+        margin-left: 0px !important;
+    }
+
+    .right .container1-r input {
+        padding-left: 40px;
+    }
+
+    .right .container3-r .scroll1 {
+        height: 250px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .right #expen-icon {
+        word-spacing: 18px;
+    }
+
+    .right #expen-selection {
+        word-spacing: 40px;
+    }
+
+    .right #expen-title {
+        word-spacing: 6px;
+    }
+
+    .right .container3-r #table3 td,
+    .right .container3-r #table3 th {
+        font-size: 12px;
+        padding: 12px 35px 10px 5px;
+    }
+}
